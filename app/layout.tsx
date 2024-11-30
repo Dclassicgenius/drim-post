@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { PT_Sans, PT_Mono } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
+import SiteHeader from "@/components/SiteHeaders/SiteHeader";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const fontSans = PT_Sans({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-pt-sans",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const fontMono = PT_Mono({
+  subsets: ["latin", "cyrillic"],
+  display: "swap",
+  weight: "400",
+  variable: "--font-pt-mono",
 });
 
 export const metadata: Metadata = {
@@ -24,11 +30,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          "bg-background min-h-screen font-pt-sans font-pt-mono antialiased",
+          fontSans.variable,
+          fontMono.variable
+        )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative flex min-h-dvh flex-col bg-background">
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            {/* <SiteFooter /> */}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
