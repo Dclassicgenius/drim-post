@@ -8,6 +8,7 @@ import { Icons } from "../Icons/Icons";
 import { Button } from "../ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "../ui/sheet";
 import { Menu } from "lucide-react";
+import { navMenu } from "@/constants";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -30,21 +31,14 @@ export function MobileNav() {
           <span className="font-bold">{siteConfig.name}</span>
         </MobileLink>
         <div className="flex flex-col gap-3 mt-3">
-          <MobileLink onOpenChange={setOpen} href="/blog">
-            Blog
-          </MobileLink>
-          <MobileLink onOpenChange={setOpen} href="/about">
-            About
-          </MobileLink>
+          {navMenu.map((item) => (
+            <MobileLink key={item.name} onOpenChange={setOpen} href={item.href}>
+              {item.name}
+            </MobileLink>
+          ))}
+
           <Link target="_blank" rel="noreferrer" href={siteConfig.links.github}>
             GitHub
-          </Link>
-          <Link
-            target="_blank"
-            rel="noreferrer"
-            href={siteConfig.links.twitter}
-          >
-            Twitter
           </Link>
         </div>
       </SheetContent>
@@ -56,6 +50,8 @@ interface MobileLinkProps extends LinkProps {
   children: React.ReactNode;
   onOpenChange?: (open: boolean) => void;
   className?: string;
+  target?: string;
+  rel?: string;
 }
 
 function MobileLink({
@@ -63,6 +59,8 @@ function MobileLink({
   onOpenChange,
   children,
   className,
+  target,
+  rel,
   ...props
 }: MobileLinkProps) {
   const router = useRouter();
@@ -75,6 +73,8 @@ function MobileLink({
       }}
       className={className}
       {...props}
+      target={target}
+      rel={rel}
     >
       {children}
     </Link>
