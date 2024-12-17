@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { Post } from "#site/content";
 import { slug } from "github-slugger";
+import { categories } from "@/constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -16,11 +17,18 @@ export function formatDate(input: string | number): string {
   });
 }
 
-export function sortPosts(posts: Array<Post>) {
+export function sortPosts(
+  posts: Array<Post>,
+  order: "asc" | "desc" = "desc"
+): Array<Post> {
+  if (!posts || posts.length === 0) return [];
+
   return posts.sort((a, b) => {
-    if (a.date > b.date) return -1;
-    if (a.date < b.date) return 1;
-    return 0;
+    if (order === "asc") {
+      return new Date(a.date) > new Date(b.date) ? 1 : -1;
+    }
+
+    return new Date(a.date) < new Date(b.date) ? 1 : -1;
   });
 }
 
@@ -48,3 +56,16 @@ export function getPostsByTagSlug(posts: Array<Post>, tag: string) {
     return slugifiedTags.includes(tag);
   });
 }
+
+export const getGradientColor = (label: string) => {
+  const category = categories.find(
+    (category) =>
+      category.label.toLocaleLowerCase() === label.toLocaleLowerCase()
+  );
+  if (category) {
+    return {
+      fromColor: category.fromColor,
+      toColor: category.toColor,
+    };
+  }
+};

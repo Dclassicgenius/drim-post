@@ -1,4 +1,9 @@
-import { getAllTags, sortTagsByCount } from "@/lib/utils";
+import {
+  getAllTags,
+  getGradientColor,
+  sortPosts,
+  sortTagsByCount,
+} from "@/lib/utils";
 import { Tag } from "../Tags/Tag";
 import { posts } from "#site/content";
 import Post from "./Post";
@@ -6,18 +11,39 @@ import Post from "./Post";
 const HomeContent = () => {
   const tags = getAllTags(posts);
   const sortedTags = sortTagsByCount(tags);
+
+  const tagsWithGradient = sortedTags.map((label) => ({
+    label,
+    ...getGradientColor(label),
+  }));
+
+  const latestPosts = sortPosts(posts, "desc").slice(0, 5);
+
   return (
     <section className="container mx-auto flex flex-col md:flex-row md:gap-10 my-10 px-6">
       <div className="flex-1">
-        <h1 className="mb-6 font-bold text-4xl text-pink-700">
+        <h1 className="mb-10 font-bold text-4xl text-pink-700">
           Latest Articles and Tutorials
         </h1>
 
-        <div className="space-y-6">
-          {Array.from({ length: 10 }, (_, i) => i).map((i) => (
-            <Post key={i} />
-          ))}
-        </div>
+        <ul className="space-y-10">
+          {latestPosts.map(
+            (post) =>
+              post.published && (
+                <li key={post.slug}>
+                  <Post
+                    key={post.slug}
+                    title={post.title}
+                    description={post.description || ""}
+                    date={post.date}
+                    tags={post.tags}
+                    summary={post.summary || ""}
+                    slug={post.slug}
+                  />
+                </li>
+              )
+          )}
+        </ul>
       </div>
 
       <aside className="md:w-1/4 space-y-6">
@@ -26,8 +52,13 @@ const HomeContent = () => {
             Browse By Tags
           </h2>
           <div className="flex flex-wrap gap-3">
-            {sortedTags.map((tag) => (
-              <Tag key={tag} tag={tag} />
+            {tagsWithGradient.map((tag) => (
+              <Tag
+                key={tag.label}
+                tag={tag.label}
+                fromColor={tag.fromColor}
+                toColor={tag.toColor}
+              />
             ))}
           </div>
         </div>

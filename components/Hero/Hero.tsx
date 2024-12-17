@@ -33,7 +33,7 @@ const Hero = () => {
         <Boxes />
         <h1
           className={cn(
-            "text-4xl md:text-6xl lg:text-8xl font-black text-white relative z-20",
+            "text-3xl md:text-5xl lg:text-7xl font-black text-white relative z-20",
             elsie.className
           )}
         >
