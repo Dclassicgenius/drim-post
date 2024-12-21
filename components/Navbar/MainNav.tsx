@@ -21,7 +21,7 @@ const MainNav = () => {
         {navMenu.map((item) => (
           <li key={item.name} className=" list-none">
             <Link
-              href={item.name}
+              href={item.href}
               className={cn(
                 "transition-colors hover:text-primary hidden sm:inline-block",
                 pathname === item.href

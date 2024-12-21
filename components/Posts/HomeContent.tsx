@@ -20,7 +20,7 @@ const HomeContent = () => {
   const latestPosts = sortPosts(posts, "desc").slice(0, 5);
 
   return (
-    <section className="container mx-auto flex flex-col md:flex-row md:gap-10 my-10 px-6">
+    <section className="container mx-auto flex flex-col md:flex-row gap-10 my-10 px-6">
       <div className="flex-1">
         <h1 className="mb-10 font-bold text-4xl text-pink-700">
           Latest Articles and Tutorials
@@ -51,16 +51,17 @@ const HomeContent = () => {
           <h2 className="mb-6 font-bold text-3xl text-pink-700">
             Browse By Tags
           </h2>
-          <div className="flex flex-wrap gap-3">
+          <ul className="flex flex-wrap gap-3">
             {tagsWithGradient.map((tag) => (
-              <Tag
-                key={tag.label}
-                tag={tag.label}
-                fromColor={tag.fromColor}
-                toColor={tag.toColor}
-              />
+              <li key={tag.label}>
+                <Tag
+                  tag={tag.label}
+                  fromColor={tag.fromColor}
+                  toColor={tag.toColor}
+                />
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
         <div>

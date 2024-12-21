@@ -6,7 +6,7 @@ export interface Category {
 
 export const navMenu = [
   { name: "About", href: "/about" },
-  { name: "Blog", href: "/blog" },
+  { name: "Posts", href: "/posts" },
   { name: "Contact", href: "/contact" },
   { name: "Tags", href: "/tags" },
 ];
