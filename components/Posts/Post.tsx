@@ -32,19 +32,20 @@ const Post = ({ title, description, date, tags, summary, slug }: PostProps) => {
   return (
     <article className="space-y-4 group">
       <h2 className="text-3xl font-bold hover:underline hover:decoration-purple-600 mb-4">
-        <Link href={"/posts/" + slug}>{title}</Link>
+        <Link href={"/" + slug}>{title}</Link>
       </h2>
-      <div className="flex flex-wrap gap-3">
+      <ul className="flex flex-wrap gap-3">
         {tagsWithGradient?.map((tag) => (
-          <Tag
-            key={tag.label}
-            tag={tag.label}
-            fromColor={tag.fromColor}
-            toColor={tag.toColor}
-            classname="text-xs font-medium p-0.5"
-          />
+          <li key={tag.label}>
+            <Tag
+              tag={tag.label}
+              fromColor={tag.fromColor}
+              toColor={tag.toColor}
+              classname="text-xs font-medium p-0.5"
+            />
+          </li>
         ))}
-      </div>
+      </ul>
       <div className="max-w-none text-muted-foreground text-base">
         {summary}
       </div>
