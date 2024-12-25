@@ -6,6 +6,7 @@ import {
   sortTagsByCount,
   getGradientColor,
   sortPosts,
+  calculateReadingTime,
 } from "@/lib/utils";
 
 const PostsPage = () => {
@@ -18,6 +19,10 @@ const PostsPage = () => {
   }));
 
   const latestPosts = sortPosts(posts, "desc");
+  const latestPostsWithReadingTime = latestPosts.map((post) => ({
+    ...post,
+    readingTime: calculateReadingTime(post.body),
+  }));
 
   return (
     <section className="container mx-auto flex flex-col md:flex-row gap-10 my-10 px-6">
@@ -25,7 +30,7 @@ const PostsPage = () => {
         <h1 className="mb-10 font-bold text-4xl text-pink-700">All Posts</h1>
 
         <ul className="space-y-10">
-          {latestPosts.map(
+          {latestPostsWithReadingTime.map(
             (post) =>
               post.published && (
                 <li key={post.slug}>
@@ -37,6 +42,7 @@ const PostsPage = () => {
                     tags={post.tags}
                     summary={post.summary || ""}
                     slug={post.slug}
+                    readingTime={post.readingTime}
                   />
                 </li>
               )

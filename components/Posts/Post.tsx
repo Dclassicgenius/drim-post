@@ -12,6 +12,7 @@ type PostProps = {
   tags?: string[];
   summary?: string;
   slug: string;
+  readingTime: string;
 };
 
 const overPass = Overpass({
@@ -21,7 +22,15 @@ const overPass = Overpass({
   fallback: ["Helvetica", "Arial", "sans-serif"],
 });
 
-const Post = ({ title, description, date, tags, summary, slug }: PostProps) => {
+const Post = ({
+  title,
+  description,
+  date,
+  tags,
+  summary,
+  slug,
+  readingTime,
+}: PostProps) => {
   const tagsWithGradient =
     tags &&
     tags.map((label) => ({
@@ -65,7 +74,7 @@ const Post = ({ title, description, date, tags, summary, slug }: PostProps) => {
           <dt className="sr-only">Reading Time</dt>
           <dd className="text-base font-medium flex items-center gap-1">
             <Clock className="h-4 w-4" />
-            <span className="text-base ">5 mins read</span>
+            <span className="text-base ">{readingTime}</span>
           </dd>
         </dl>
       </div>

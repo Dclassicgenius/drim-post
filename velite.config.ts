@@ -10,13 +10,14 @@ const computedFields = <T extends { slug: string }>(data: T) => ({
 
 const posts = defineCollection({
   name: "Post",
-  pattern: "blog/**/*.mdx",
+  pattern: "posts/**/*.mdx",
   schema: s
     .object({
       slug: s.path(),
       title: s.string().max(99),
       description: s.string().max(999).optional(),
       date: s.isodate(),
+      updatedOn: s.isodate().optional(),
       published: s.boolean().default(true),
       tags: s.array(s.string()).optional(),
       image: s.string().optional(),
@@ -40,7 +41,7 @@ export default defineConfig({
   mdx: {
     rehypePlugins: [
       rehypeSlug,
-      [rehypePrettyCode, { theme: "github-dark" }],
+      [rehypePrettyCode, { theme: "dracula" }],
       [
         rehypeAutolinkHeadings,
         {

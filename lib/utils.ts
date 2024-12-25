@@ -8,13 +8,32 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function getOrdinalSuffix(day: number): string {
+  if (day > 3 && day < 21) return `${day}th`;
+  switch (day % 10) {
+    case 1:
+      return `${day}st`;
+    case 2:
+      return `${day}nd`;
+    case 3:
+      return `${day}rd`;
+    default:
+      return `${day}th`;
+  }
+}
+
 export function formatDate(input: string | number): string {
   const date = new Date(input);
-  return date.toLocaleDateString("en-GB", {
+  const options: Intl.DateTimeFormatOptions = {
     month: "long",
     day: "numeric",
     year: "numeric",
-  });
+  };
+  const formattedDate = date.toLocaleDateString("en-GB", options);
+  const parts = formattedDate.split(" ");
+  const day = parseInt(parts[0], 10);
+  const ordinalDay = getOrdinalSuffix(day);
+  return `${ordinalDay} ${parts[1]}, ${parts[2]}`;
 }
 
 export function sortPosts(
@@ -69,3 +88,10 @@ export const getGradientColor = (label: string) => {
     };
   }
 };
+
+export function calculateReadingTime(content: string): string {
+  const wordsPerMinute = 200;
+  const words = content.split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} ${minutes === 1 ? "min" : "mins"} read`;
+}
