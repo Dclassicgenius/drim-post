@@ -2,6 +2,8 @@ import { defineConfig, defineCollection, s } from "velite";
 import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeToc from "@stefanprobst/rehype-extract-toc";
+import rehypeTocExtract from "@stefanprobst/rehype-extract-toc/mdx";
 
 const computedFields = <T extends { slug: string }>(data: T) => ({
   ...data,
@@ -41,6 +43,8 @@ export default defineConfig({
   mdx: {
     rehypePlugins: [
       rehypeSlug,
+      rehypeToc,
+      [rehypeTocExtract, { name: "toc" }],
       [rehypePrettyCode, { theme: "dracula" }],
       [
         rehypeAutolinkHeadings,

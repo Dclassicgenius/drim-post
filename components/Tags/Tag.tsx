@@ -41,7 +41,7 @@ export function Tag({
     >
       <span
         className={cn(
-          ` bg-clip-text text-transparent p-1 font-medium text-lg inline-block capitalize transition-all duration-300 ease-in-out`,
+          ` bg-clip-text text-transparent p-1 font-medium text-base inline-block capitalize transition-all duration-300 ease-in-out`,
           overPass.className,
           classname
         )}

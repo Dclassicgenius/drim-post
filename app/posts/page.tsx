@@ -50,7 +50,7 @@ const PostsPage = () => {
         </ul>
       </div>
 
-      <aside className="md:w-1/3 space-y-6 border-2 0 rounded-lg p-4 h-fit md:mt-16">
+      <aside className="md:w-[35%] space-y-6 border-2 0 rounded-lg p-4 h-fit md:mt-16 order-first md:order-last md:sticky md:top-24 mt-8">
         <h2 className="mb-6 font-bold text-3xl text-pink-700">Tags</h2>
         <ul className="flex flex-wrap gap-3">
           {tagsWithGradient.map((tag) => (
