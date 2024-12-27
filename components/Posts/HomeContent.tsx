@@ -1,5 +1,6 @@
 import {
   calculateReadingTime,
+  cn,
   getAllTags,
   getGradientColor,
   sortPosts,
@@ -8,6 +9,8 @@ import {
 import { Tag } from "../Tags/Tag";
 import { posts } from "#site/content";
 import Post from "./Post";
+import Link from "next/link";
+import { MoveRight } from "lucide-react";
 
 const HomeContent = () => {
   const tags = getAllTags(posts);
@@ -50,6 +53,21 @@ const HomeContent = () => {
               )
           )}
         </ul>
+
+        <div className="justify-self-center mt-3 transition-transform duration-200 hover:scale-105">
+          <Link href="/posts">
+            <button
+              className={cn(
+                "inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] pl-2 pr-10 font-medium  transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-xl group text-slate-400 hover:text-white"
+              )}
+            >
+              <span className="mr-8 p-1 border rounded-sm bg-slate-700 transition-transform group-hover:animate-bounce-x">
+                <MoveRight />
+              </span>{" "}
+              View all posts
+            </button>
+          </Link>
+        </div>
       </div>
 
       <aside className="md:w-1/4 space-y-6">

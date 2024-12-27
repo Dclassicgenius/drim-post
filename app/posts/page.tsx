@@ -8,6 +8,12 @@ import {
   sortPosts,
   calculateReadingTime,
 } from "@/lib/utils";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Drimblog Posts",
+  description: "All posts from Drimblog",
+};
 
 const PostsPage = () => {
   const tags = getAllTags(posts);

@@ -55,7 +55,7 @@ export default function TagPage({ params }: TagPageProps) {
   return (
     <div className="container max-w-5xl mx-auto p-6 lg:py-10">
       <div className="flex-1 space-y-4">
-        <h1 className="inline-block font-black text-4xl lg:text-5xl capitalize">
+        <h1 className="inline-block font-black text-4xl lg:text-5xl capitalize text-pink-700">
           {title}
         </h1>
       </div>
@@ -63,7 +63,7 @@ export default function TagPage({ params }: TagPageProps) {
         <div className="col-span-12 md:col-span-8">
           <hr />
           {displayPosts?.length > 0 ? (
-            <ul className="flex flex-col mt-8">
+            <ul className="flex flex-col mt-8 space-y-10">
               {displayPosts.map((post) => {
                 return (
                   <li key={post.slug}>

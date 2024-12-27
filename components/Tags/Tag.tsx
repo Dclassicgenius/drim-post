@@ -31,26 +31,48 @@ export function Tag({
   if (!tag) return;
 
   return (
-    <Link
-      className={badgeVariants({
-        variant: current ? "outline" : "outline",
-        className:
-          "no-underline rounded-md transition-transform duration-300 hover:scale-105",
-      })}
-      href={`/tags/${slug(tag)}`}
-    >
-      <span
-        className={cn(
-          ` bg-clip-text text-transparent p-1 font-medium text-base inline-block capitalize transition-all duration-300 ease-in-out`,
-          overPass.className,
-          classname
-        )}
-        style={{
-          backgroundImage: `linear-gradient(to right, ${fromColor}, ${toColor})`,
-        }}
-      >
-        {tag} {count ? `(${count})` : null}
-      </span>
-    </Link>
+    <>
+      {current ? (
+        <button className="p-[3px] relative cursor-default">
+          <div
+            className="absolute inset-0 rounded-lg"
+            style={{
+              backgroundImage: `linear-gradient(to right, ${fromColor}, ${toColor})`,
+            }}
+          />
+          <div
+            className={cn(
+              "px-4 py-1  bg-background rounded-[6px]  relative group transition duration-200 text-foreground hover:bg-transparent font-medium text-base inline-block capitalize",
+              overPass.className,
+              classname
+            )}
+          >
+            {tag} {count ? `(${count})` : null}
+          </div>
+        </button>
+      ) : (
+        <Link
+          className={badgeVariants({
+            variant: "outline",
+            className:
+              "no-underline rounded-md transition-transform duration-300 hover:scale-105",
+          })}
+          href={`/tags/${slug(tag)}`}
+        >
+          <span
+            className={cn(
+              ` bg-clip-text text-transparent p-1 font-medium text-base inline-block capitalize transition-all duration-300 ease-in-out`,
+              overPass.className,
+              classname
+            )}
+            style={{
+              backgroundImage: `linear-gradient(to right, ${fromColor}, ${toColor})`,
+            }}
+          >
+            {tag} {count ? `(${count})` : null}
+          </span>
+        </Link>
+      )}
+    </>
   );
 }
