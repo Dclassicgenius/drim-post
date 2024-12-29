@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Github, Mail, Twitter } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { navMenu } from "@/constants";
 
 const Footer = () => {
   return (
@@ -18,30 +19,16 @@ const Footer = () => {
           <div className="space-y-3">
             <h3 className="text-lg font-semibold">Quick Links</h3>
             <ul className="flex space-x-5">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-sm text-muted-foreground hover:text-purple-500 transition-colors"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/posts"
-                  className="text-sm text-muted-foreground hover:text-purple-500 transition-colors"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/tags"
-                  className="text-sm text-muted-foreground hover:text-purple-500 transition-colors"
-                >
-                  Tags
-                </Link>
-              </li>
+              {navMenu.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-purple-500 transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

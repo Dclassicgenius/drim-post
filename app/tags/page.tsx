@@ -1,14 +1,11 @@
 import { posts } from "#site/content";
 import { Tag } from "@/components/Tags/Tag";
-import { getAllTags, sortTagsByCount, getGradientColor } from "@/lib/utils";
+import { getAllTags, sortTagsByCount, getTagsWithGradient } from "@/lib/utils";
 
 const tags = getAllTags(posts);
 const sortedTags = sortTagsByCount(tags);
 
-const tagsWithGradient = sortedTags.map((label) => ({
-  label,
-  ...getGradientColor(label),
-}));
+const tagsWithGradient = getTagsWithGradient(sortedTags);
 
 const AllTagsPage = () => {
   return (

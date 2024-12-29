@@ -4,9 +4,9 @@ import { Tag } from "@/components/Tags/Tag";
 import {
   getAllTags,
   sortTagsByCount,
-  getGradientColor,
   sortPosts,
   calculateReadingTime,
+  getTagsWithGradient,
 } from "@/lib/utils";
 import { Metadata } from "next";
 
@@ -19,10 +19,7 @@ const PostsPage = () => {
   const tags = getAllTags(posts);
   const sortedTags = sortTagsByCount(tags);
 
-  const tagsWithGradient = sortedTags.map((label) => ({
-    label,
-    ...getGradientColor(label),
-  }));
+  const tagsWithGradient = getTagsWithGradient(sortedTags);
 
   const latestPosts = sortPosts(posts, "desc");
   const latestPostsWithReadingTime = latestPosts.map((post) => ({

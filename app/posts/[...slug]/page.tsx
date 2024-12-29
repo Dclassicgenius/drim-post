@@ -7,7 +7,7 @@ import { Tag } from "@/components/Tags/Tag";
 import {
   calculateReadingTime,
   formatDate,
-  getGradientColor,
+  getTagsWithGradient,
 } from "@/lib/utils";
 import { Clock } from "lucide-react";
 import { ToC } from "@/components/OnThisPage/ToC";
@@ -79,10 +79,7 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
-  const tagsWithGradient = post.tags?.map((label) => ({
-    label,
-    ...getGradientColor(label),
-  }));
+  const tagsWithGradient = getTagsWithGradient(post?.tags ?? []);
 
   const readingTime = calculateReadingTime(post.body);
 

@@ -2,7 +2,7 @@ import {
   calculateReadingTime,
   cn,
   getAllTags,
-  getGradientColor,
+  getTagsWithGradient,
   sortPosts,
   sortTagsByCount,
 } from "@/lib/utils";
@@ -16,10 +16,7 @@ const HomeContent = () => {
   const tags = getAllTags(posts);
   const sortedTags = sortTagsByCount(tags);
 
-  const tagsWithGradient = sortedTags.map((label) => ({
-    label,
-    ...getGradientColor(label),
-  }));
+  const tagsWithGradient = getTagsWithGradient(sortedTags);
 
   const latestPosts = sortPosts(posts, "desc").slice(0, 5);
   const latestPostsWithReadingTime = latestPosts.map((post) => ({
@@ -58,10 +55,29 @@ const HomeContent = () => {
           <Link href="/posts">
             <button
               className={cn(
-                "inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] pl-2 pr-10 font-medium  transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-xl group text-slate-400 hover:text-white"
+                "inline-flex h-12 animate-shimmer items-center justify-center rounded-md",
+                "border transition-colors focus:outline-none focus:ring-2",
+                "pl-2 pr-10 font-medium text-xl group",
+                // Light mode
+                "bg-gradient-to-r from-slate-100 via-slate-200 to-slate-100",
+                "border-slate-300 text-slate-600",
+                "hover:text-slate-900 hover:border-slate-400",
+                "focus:ring-slate-400 focus:ring-offset-2",
+                // Dark mode
+                "dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-800 dark:to-slate-900",
+                "dark:border-slate-700 dark:text-slate-400",
+                "dark:hover:text-slate-200 dark:hover:border-slate-600",
+                "dark:focus:ring-slate-600 dark:focus:ring-offset-slate-900",
+                "bg-[length:200%_100%]"
               )}
             >
-              <span className="mr-8 p-1 border rounded-sm bg-slate-700 transition-transform group-hover:animate-bounce-x">
+              <span
+                className={cn(
+                  "mr-8 p-1 border rounded-sm transition-transform group-hover:animate-bounce-x",
+                  "bg-slate-200 border-slate-300",
+                  "dark:bg-slate-800 dark:border-slate-700"
+                )}
+              >
                 <MoveRight />
               </span>{" "}
               View all posts

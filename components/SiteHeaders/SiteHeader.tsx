@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import MainNav from "../Navbar/MainNav";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
@@ -19,7 +19,9 @@ const SiteHeader = () => {
             <div
               className={cn(buttonVariants({ variant: "ghost" }), "w-10 px-0 ")}
             >
-              <Search />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Search />
+              </Suspense>
               <span className="sr-only">Magnifying Glass</span>
             </div>
             <Link

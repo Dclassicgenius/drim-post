@@ -89,6 +89,15 @@ export const getGradientColor = (label: string) => {
   }
 };
 
+export const getTagsWithGradient = (tags: string[]) => {
+  if (!tags || tags.length === 0) return [];
+
+  return tags.map((label) => ({
+    label,
+    ...getGradientColor(label),
+  }));
+};
+
 export function calculateReadingTime(content: string): string {
   const wordsPerMinute = 200;
   const words = content.split(/\s+/).length;

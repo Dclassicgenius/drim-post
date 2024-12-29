@@ -2,7 +2,7 @@ import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 import { Tag } from "../Tags/Tag";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
-import { cn, formatDate, getGradientColor } from "@/lib/utils";
+import { cn, formatDate, getTagsWithGradient } from "@/lib/utils";
 import { Overpass } from "next/font/google";
 
 type PostProps = {
@@ -31,12 +31,7 @@ const Post = ({
   slug,
   readingTime,
 }: PostProps) => {
-  const tagsWithGradient =
-    tags &&
-    tags.map((label) => ({
-      label,
-      ...getGradientColor(label),
-    }));
+  const tagsWithGradient = tags && getTagsWithGradient(tags);
 
   return (
     <article className="space-y-4 group">

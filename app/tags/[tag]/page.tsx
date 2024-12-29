@@ -4,8 +4,8 @@ import { Tag } from "@/components/Tags/Tag";
 import {
   calculateReadingTime,
   getAllTags,
-  getGradientColor,
   getPostsByTagSlug,
+  getTagsWithGradient,
   sortTagsByCount,
 } from "@/lib/utils";
 import { slug } from "github-slugger";
@@ -47,10 +47,7 @@ export default function TagPage({ params }: TagPageProps) {
 
   const tags = getAllTags(posts);
   const sortedTags = sortTagsByCount(tags);
-  const tagsWithGradient = sortedTags.map((label) => ({
-    label,
-    ...getGradientColor(label),
-  }));
+  const tagsWithGradient = getTagsWithGradient(sortedTags);
 
   return (
     <div className="container max-w-5xl mx-auto p-6 lg:py-10">
