@@ -1,8 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import { Github, Mail, Twitter } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { navMenu } from "@/constants";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "../ui/button";
+import { Icons } from "../Icons/Icons";
 
 const Footer = () => {
   return (
@@ -10,7 +12,7 @@ const Footer = () => {
       <div className="container px-4 md:px-6 py-8 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-3">
-            <h3 className="text-lg font-semibold">{siteConfig.name}</h3>
+            <h3 className="text-2xl font-bold">{siteConfig.name}</h3>
             <p className="text-sm text-muted-foreground">
               {siteConfig.description}
             </p>
@@ -38,24 +40,47 @@ const Footer = () => {
               <Link
                 href={siteConfig.links.github}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-purple-500 transition-colors"
+                rel="noreferrer"
               >
-                <Github className="h-5 w-5" />
+                <div
+                  className={cn(
+                    buttonVariants({ variant: "ghost" }),
+                    "w-10 px-0 hidden sm:inline-flex"
+                  )}
+                >
+                  <Icons.gitHub className="h-6 w-6" />
+                  <span className="sr-only">GitHub</span>
+                </div>
               </Link>
               <Link
                 href={siteConfig.links.twitter}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-purple-500 transition-colors"
+                rel="noreferrer"
               >
-                <Twitter className="h-5 w-5" />
+                <div
+                  className={cn(
+                    buttonVariants({ variant: "ghost" }),
+                    "w-10 px-0 hidden sm:inline-flex"
+                  )}
+                >
+                  <Icons.twitter className="h-6 w-6" />
+                  <span className="sr-only">twitter</span>
+                </div>
               </Link>
               <Link
                 href={`mailto:${siteConfig.email}`}
-                className="text-muted-foreground hover:text-purple-500 transition-colors"
+                target="_blank"
+                rel="noreferrer"
               >
-                <Mail className="h-5 w-5" />
+                <div
+                  className={cn(
+                    buttonVariants({ variant: "ghost" }),
+                    "w-10 px-0 hidden sm:inline-flex"
+                  )}
+                >
+                  <Icons.mail className="h-6 w-6" />
+                  <span className="sr-only">Email</span>
+                </div>
               </Link>
             </div>
           </div>

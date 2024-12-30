@@ -1,9 +1,9 @@
 import { ArrowUpRight, Calendar, Clock } from "lucide-react";
-import { Tag } from "../Tags/Tag";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 import { cn, formatDate, getTagsWithGradient } from "@/lib/utils";
 import { Overpass } from "next/font/google";
+import TagList from "../Tags/TagList";
 
 type PostProps = {
   title: string;
@@ -31,25 +31,17 @@ const Post = ({
   slug,
   readingTime,
 }: PostProps) => {
-  const tagsWithGradient = tags && getTagsWithGradient(tags);
-
   return (
     <article className="space-y-4 group">
       <h2 className="text-3xl font-bold hover:underline hover:decoration-purple-600 mb-4">
         <Link href={"/" + slug}>{title}</Link>
       </h2>
-      <ul className="flex flex-wrap gap-3">
-        {tagsWithGradient?.map((tag) => (
-          <li key={tag.label}>
-            <Tag
-              tag={tag.label}
-              fromColor={tag.fromColor}
-              toColor={tag.toColor}
-              classname="text-xs font-medium p-0.5"
-            />
-          </li>
-        ))}
-      </ul>
+
+      <TagList
+        tags={getTagsWithGradient(tags ?? [])}
+        classname="text-xs p-0.5"
+      />
+
       <div className="max-w-none text-muted-foreground text-base">
         {summary}
       </div>

@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "DrimBlog",
   url: "https://example.com",
-  description: "A blog on everything web development",
-  author: "drim",
+  description: "Sharing useful knowledge and ideas.",
+  author: "Patrick Onwuka",
   email: "patamaechi1@gmail.com",
   links: {
     twitter: "https://twitter.com/itzclassicpat",

@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
-import { Icons } from "../Icons/Icons";
 import { Button } from "../ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "../ui/sheet";
 import { Menu } from "lucide-react";
@@ -27,8 +26,7 @@ export function MobileNav() {
           href="/"
           className="flex items-center"
         >
-          <Icons.logo className="mr-2 h-4 w-4" />
-          <span className="font-bold">{siteConfig.name}</span>
+          <span className="text-2xl font-bold">{siteConfig.name}</span>
         </MobileLink>
         <div className="flex flex-col gap-3 mt-3">
           {navMenu.map((item) => (

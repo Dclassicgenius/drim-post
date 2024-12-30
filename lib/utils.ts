@@ -4,6 +4,13 @@ import { Post } from "#site/content";
 import { slug } from "github-slugger";
 import { categories } from "@/constants";
 
+export type TagType = {
+  label: string;
+  fromColor?: string;
+  toColor?: string;
+  count?: number;
+};
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -52,16 +59,28 @@ export function sortPosts(
 }
 
 export function getAllTags(posts: Array<Post>) {
+  if (!posts || posts.length === 0) return [];
+
   const tags: Record<string, number> = {};
+
   posts.forEach((post) => {
     if (post.published) {
-      post.tags?.forEach((tag) => {
-        tags[tag] = (tags[tag] ?? 0) + 1;
-      });
+      if (post.tags) {
+        post.tags.forEach((tag) => {
+          const normalizedTag = tag.toLowerCase();
+          tags[normalizedTag] = (tags[normalizedTag] ?? 0) + 1;
+        });
+      }
     }
   });
 
-  return tags;
+  const tagsWithGradient = Object.entries(tags).map(([tag, count]) => ({
+    label: tag,
+    count,
+    ...getGradientColor(tag),
+  }));
+
+  return tagsWithGradient.sort((a, b) => b.count - a.count);
 }
 
 export function sortTagsByCount(tags: Record<string, number>) {

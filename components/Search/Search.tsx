@@ -18,7 +18,7 @@ import { posts } from "#site/content";
 import { createSearchIndex, SearchablePost } from "@/lib/fuse-search";
 import Link from "next/link";
 import { getTagsWithGradient } from "@/lib/utils";
-import { Tag } from "../Tags/Tag";
+import TagList from "../Tags/TagList";
 
 const Search = () => {
   const [open, setOpen] = useState(false);
@@ -132,23 +132,19 @@ const Search = () => {
                   <li key={post.slug}>
                     <Link
                       href={`/${post.slug}`}
-                      className="block px-4 py-2 hover:bg-muted group"
+                      className="block px-4 py-2 hover:bg-muted/50 group"
                       onClick={() => {
                         setOpen(false);
                         clearSearch();
                       }}
                     >
                       <h3 className="font-bold">{post.title}</h3>
-                      <div className="flex flex-wrap gap-3 my-1 relative z-10">
-                        {tagsWithGradient?.map((tag) => (
-                          <Tag
-                            key={tag.label}
-                            tag={tag.label}
-                            fromColor={tag.fromColor}
-                            toColor={tag.toColor}
-                            classname="text-xs font-light p-0.5 relative z-10"
-                          />
-                        ))}
+
+                      <div className="my-1 relative z-10">
+                        <TagList
+                          tags={tagsWithGradient}
+                          classname="text-xs p-0.5 relative z-10"
+                        />
                       </div>
                       {post.description && (
                         <p className="text-sm text-muted-foreground line-clamp-1 text-ellipsis">
@@ -164,8 +160,8 @@ const Search = () => {
             !isLoading &&
             searchParams.get("query") && (
               <p className="absolute top-full left-0 right-0 z-50 bg-background border rounded-md overflow-auto p-4">
-                <span>No results. </span>Sorry, this doesn&apos;t appear to be
-                something I&apos;ve written about!
+                <span className="font-semibold">No results. </span>Sorry, this
+                doesn&apos;t appear to be something I&apos;ve written about!
               </p>
             )
           )}

@@ -1,18 +1,18 @@
 import { posts } from "#site/content";
-import { MDXContent, MDXToC } from "@/components/mdx-components";
+import { MDXContent, MDXToC } from "@/components/MDX/mdx-components";
 import { notFound } from "next/navigation";
 
 import "@/styles/mdx.css";
-import { Tag } from "@/components/Tags/Tag";
 import {
   calculateReadingTime,
   formatDate,
   getTagsWithGradient,
 } from "@/lib/utils";
 import { Clock } from "lucide-react";
-import { ToC } from "@/components/OnThisPage/ToC";
+import { ToC } from "@/components/ToC/ToC";
 import { siteConfig } from "@/config/site";
 import { Metadata } from "next";
+import TagList from "@/components/Tags/TagList";
 
 interface PostPageProps {
   params: {
@@ -91,16 +91,8 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_250px] gap-8 md:gap-12">
           <div className="prose dark:prose-invert max-w-none">
             <h1 className="mb-2">{post.title}</h1>
-            <div className="flex flex-wrap gap-3 my-3">
-              {tagsWithGradient?.map((tag) => (
-                <Tag
-                  key={tag.label}
-                  tag={tag.label}
-                  fromColor={tag.fromColor}
-                  toColor={tag.toColor}
-                  classname="text-xs font-medium p-0.5"
-                />
-              ))}
+            <div className="-m-5">
+              <TagList tags={tagsWithGradient} classname="text-xs p-0.5" />
             </div>
             {post.description && (
               <p className="text-xl mt-0 text-muted-foreground">
@@ -108,7 +100,7 @@ export default async function PostPage({ params }: PostPageProps) {
               </p>
             )}
 
-            <div className="flex flex-col sm:flex-row sm:gap-4 tracking-wider">
+            <div className="flex flex-col sm:flex-row sm:gap-4 tracking-wider -mt-2">
               <p className="m-0">Published on {formatDate(post.date)} </p>
               {post.updatedOn && <span className="hidden sm:block">•</span>}
               {post.updatedOn && (
@@ -123,6 +115,7 @@ export default async function PostPage({ params }: PostPageProps) {
             </p>
 
             <hr className="my-4" />
+
             <MDXContent code={post.body} />
           </div>
 

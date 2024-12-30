@@ -1,28 +1,16 @@
 import { posts } from "#site/content";
-import { Tag } from "@/components/Tags/Tag";
-import { getAllTags, sortTagsByCount, getTagsWithGradient } from "@/lib/utils";
+import TagList from "@/components/Tags/TagList";
+import { getAllTags } from "@/lib/utils";
 
 const tags = getAllTags(posts);
-const sortedTags = sortTagsByCount(tags);
-
-const tagsWithGradient = getTagsWithGradient(sortedTags);
 
 const AllTagsPage = () => {
   return (
-    <section className="container mx-auto my-10 px-6">
+    <section className="container max-w-5xl mx-auto my-10 px-6">
       <h2 className="mb-6 font-bold text-3xl text-pink-700">Tags</h2>
-      <ul className="flex flex-wrap gap-3">
-        {tagsWithGradient.map((tag) => (
-          <li key={tag.label}>
-            <Tag
-              tag={tag.label}
-              fromColor={tag.fromColor}
-              toColor={tag.toColor}
-              count={tags[tag.label]}
-            />
-          </li>
-        ))}
-      </ul>
+
+      <TagList tags={tags} showCount />
+      
     </section>
   );
 };

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { PT_Sans, PT_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/Theme/theme-provider";
 import SiteHeader from "@/components/SiteHeaders/SiteHeader";
 import Footer from "@/components/Footer/Footer";
 import { siteConfig } from "@/config/site";
@@ -33,11 +33,6 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
 };
-
-// export const metadata: Metadata = {
-//   title: "DrimBlog",
-//   description: "This is DrimBlog - My Journey in Bytes, Bits, and Big Ideas.",
-// };
 
 export default function RootLayout({
   children,

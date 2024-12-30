@@ -4,10 +4,12 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeToc from "@stefanprobst/rehype-extract-toc";
 import rehypeTocExtract from "@stefanprobst/rehype-extract-toc/mdx";
+import { calculateReadingTime } from "./lib/utils";
 
-const computedFields = <T extends { slug: string }>(data: T) => ({
+const computedFields = <T extends { slug: string; body: string }>(data: T) => ({
   ...data,
   slugAsParams: data.slug.split("/").slice(1).join("/"),
+  readingTime: calculateReadingTime(data.body),
 });
 
 const posts = defineCollection({

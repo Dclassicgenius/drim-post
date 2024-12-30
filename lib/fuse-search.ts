@@ -47,37 +47,3 @@ export function createSearchIndex(posts: Post[]) {
     includeScore: true,
   });
 }
-
-export function highlightMatch(text: string, query: string) {
-  if (!query) return text;
-  const regex = new RegExp(`(${query})`, "gi");
-  return text.replace(
-    regex,
-    '<mark class="bg-yellow-200 dark:bg-yellow-800">$1</mark>'
-  );
-}
-
-export function getTextSnippet(
-  text: string,
-  query: string,
-  snippetLength = 150
-): string {
-  const cleanText = text.replace(/[{}[\]()]/g, "");
-  const index = cleanText.toLowerCase().indexOf(query.toLowerCase());
-
-  if (index === -1) {
-    return cleanText.slice(0, snippetLength) + "...";
-  }
-
-  const start = Math.max(0, index - snippetLength / 2);
-  const end = Math.min(
-    cleanText.length,
-    index + query.length + snippetLength / 2
-  );
-
-  return (
-    (start > 0 ? "..." : "") +
-    cleanText.slice(start, end).trim() +
-    (end < cleanText.length ? "..." : "")
-  );
-}

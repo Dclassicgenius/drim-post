@@ -4,8 +4,8 @@ import { badgeVariants } from "../ui/badge";
 import { cn } from "@/lib/utils";
 import { Overpass } from "next/font/google";
 
-interface TagProps {
-  tag: string;
+export interface TagProps {
+  label: string;
   current?: boolean;
   count?: number;
   fromColor?: string;
@@ -21,15 +21,13 @@ const overPass = Overpass({
 });
 
 export function Tag({
-  tag,
+  label,
   current,
   count,
   fromColor,
   toColor,
   classname,
 }: TagProps) {
-  if (!tag) return;
-
   return (
     <>
       {current ? (
@@ -47,7 +45,7 @@ export function Tag({
               classname
             )}
           >
-            {tag} {count ? `(${count})` : null}
+            {label} {count ? `(${count})` : null}
           </div>
         </button>
       ) : (
@@ -57,7 +55,7 @@ export function Tag({
             className:
               "no-underline rounded-md transition-transform duration-300 hover:scale-105",
           })}
-          href={`/tags/${slug(tag)}`}
+          href={`/tags/${slug(label)}`}
         >
           <span
             className={cn(
@@ -69,7 +67,7 @@ export function Tag({
               backgroundImage: `linear-gradient(to right, ${fromColor}, ${toColor})`,
             }}
           >
-            {tag} {count ? `(${count})` : null}
+            {label} {count ? `(${count})` : null}
           </span>
         </Link>
       )}

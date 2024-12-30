@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
-import MainNav from "../Navbar/MainNav";
+import MainNav from "./MainNav";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { Icons } from "../Icons/Icons";
-import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
-import { MobileNav } from "../Navbar/MobileNav";
+import { ThemeToggle } from "../Theme/ThemeToggle";
+import { MobileNav } from "./MobileNav";
 import Search from "../Search/Search";
 
 const SiteHeader = () => {
