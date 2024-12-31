@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import "@/styles/mdx.css";
 import {
   calculateReadingTime,
+  cn,
   formatDate,
   getTagsWithGradient,
 } from "@/lib/utils";
@@ -13,12 +14,26 @@ import { ToC } from "@/components/ToC/ToC";
 import { siteConfig } from "@/config/site";
 import { Metadata } from "next";
 import TagList from "@/components/Tags/TagList";
+import { PT_Mono, PT_Sans } from "next/font/google";
 
 interface PostPageProps {
   params: {
     slug: string[];
   };
 }
+
+const fontSans = PT_Sans({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-pt-sans",
+});
+const fontMono = PT_Mono({
+  subsets: ["latin", "cyrillic"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-pt-sans",
+});
 
 async function getPostFromParams(params: PostPageProps["params"]) {
   const slug = params?.slug?.join("/");
@@ -86,7 +101,9 @@ export default async function PostPage({ params }: PostPageProps) {
   const tableOfContents = MDXToC({ code: post.body });
 
   return (
-    <div className="container px-4 md:px-6 mx-auto mb-6">
+    <div
+      className={cn("container px-4 md:px-6 mx-auto mb-6", fontSans.className)}
+    >
       <article className="max-w-5xl mx-auto mt-8">
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_250px] gap-8 md:gap-12">
           <div className="prose dark:prose-invert max-w-none">
@@ -100,7 +117,12 @@ export default async function PostPage({ params }: PostPageProps) {
               </p>
             )}
 
-            <div className="flex flex-col sm:flex-row sm:gap-4 tracking-wider -mt-2">
+            <div
+              className={cn(
+                "flex flex-col sm:flex-row sm:gap-4 tracking-wider -mt-2",
+                fontMono.className
+              )}
+            >
               <p className="m-0">Published on {formatDate(post.date)} </p>
               {post.updatedOn && <span className="hidden sm:block">•</span>}
               {post.updatedOn && (
@@ -110,7 +132,12 @@ export default async function PostPage({ params }: PostPageProps) {
               )}
             </div>
 
-            <p className="m-0 mt-3 flex items-center gap-1">
+            <p
+              className={cn(
+                "m-0 mt-3 flex items-center gap-1",
+                fontMono.className
+              )}
+            >
               <Clock className="h-4 w-4" /> {readingTime}
             </p>
 

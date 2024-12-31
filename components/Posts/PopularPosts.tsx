@@ -4,8 +4,9 @@ import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import { slug } from "github-slugger";
 
+const popularPosts = sortPosts(posts, "asc").slice(0, 5);
+
 const PopularPosts = () => {
-  const popularPosts = sortPosts(posts, "asc").slice(0, 5);
   return (
     <ul className="space-y-4">
       {popularPosts.map((post) => (
@@ -15,7 +16,10 @@ const PopularPosts = () => {
         >
           <div>
             <h2 className="text-lg flex gap-3 justify-items-center font-bold hover:underline hover:decoration-purple-600 mb-1">
-              <MoveRight /> <Link href={"/" + slug}>{post.title}</Link>
+              <div>
+                <MoveRight className=" w-6 h-6" />{" "}
+              </div>
+              <Link href={"/" + slug}>{post.title}</Link>
             </h2>
           </div>
         </li>

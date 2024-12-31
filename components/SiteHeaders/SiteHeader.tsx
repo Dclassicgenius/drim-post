@@ -28,6 +28,7 @@ const SiteHeader = () => {
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
+              className="mr-2 md:mr-0"
             >
               <div
                 className={cn(

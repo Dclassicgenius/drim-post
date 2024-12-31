@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { PT_Sans, PT_Mono } from "next/font/google";
+import { Overpass } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/Theme/theme-provider";
@@ -7,18 +7,11 @@ import SiteHeader from "@/components/SiteHeaders/SiteHeader";
 import Footer from "@/components/Footer/Footer";
 import { siteConfig } from "@/config/site";
 
-const fontSans = PT_Sans({
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "700"],
-  display: "swap",
-  variable: "--font-pt-sans",
-});
-
-const fontMono = PT_Mono({
+const fontSans = Overpass({
+  weight: ["400", "500", "600", "700", "900"],
   subsets: ["latin", "cyrillic"],
   display: "swap",
-  weight: "400",
-  variable: "--font-pt-mono",
+  variable: "--font-overpass-sans",
 });
 
 export const metadata: Metadata = {
@@ -47,9 +40,9 @@ export default function RootLayout({
     >
       <body
         className={cn(
-          "bg-background min-h-screen font-pt-sans font-pt-mono antialiased",
-          fontSans.variable,
-          fontMono.variable
+          "bg-background min-h-screen font-overpass-sans font-overpass-mono antialiased",
+          fontSans.className
+          // fontMono.className
         )}
       >
         <ThemeProvider

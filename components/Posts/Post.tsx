@@ -2,7 +2,7 @@ import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 import { cn, formatDate, getTagsWithGradient } from "@/lib/utils";
-import { Overpass } from "next/font/google";
+import { Overpass_Mono } from "next/font/google";
 import TagList from "../Tags/TagList";
 
 type PostProps = {
@@ -15,9 +15,9 @@ type PostProps = {
   readingTime: string;
 };
 
-const overPass = Overpass({
+const overpassMono = Overpass_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   fallback: ["Helvetica", "Arial", "sans-serif"],
 });
@@ -45,10 +45,8 @@ const Post = ({
       <div className="max-w-none text-muted-foreground text-base">
         {summary}
       </div>
-      <p className={cn("text-xl font-medium", overPass.className)}>
-        {description}
-      </p>
-      <div className={overPass.className}>
+      <p className={cn("text-xl font-medium")}>{description}</p>
+      <div className={overpassMono.className}>
         <dl className="flex gap-4">
           <dt className="sr-only">Published On & Reading Time</dt>
           <dd className="text-base font-medium flex items-center gap-1">

@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   description: "All posts from Drimblog",
 };
 
+const tags = getAllTags(posts);
+
+const allPosts = sortPosts(posts, "desc");
+
 const PostsPage = () => {
-  const tags = getAllTags(posts);
-
-  const allPosts = sortPosts(posts, "desc");
-
   return (
     <section className="container max-w-6xl mx-auto flex flex-col md:flex-row gap-10 my-10 px-6">
       <div className="flex-1">

@@ -17,8 +17,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-pt-sans)", ...fontFamily.sans],
-        mono: ["var(--font-pt-mono)", ...fontFamily.mono],
+        sans: ["var(--font-overpass-sans)", ...fontFamily.sans],
+        mono: ["var(--font-overpass-mono)", ...fontFamily.mono],
       },
       colors: {
         background: "hsl(var(--background))",

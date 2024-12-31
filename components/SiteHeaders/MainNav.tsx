@@ -15,7 +15,7 @@ const MainNav = () => {
       <Link href="/" className="flex items-center gap-2">
         <span className="text-2xl font-bold">{siteConfig.name}</span>
       </Link>
-      <ul className="flex items-center gap-6 ">
+      <ul className="flex items-center gap-6">
         {navMenu.map((item) => (
           <li key={item.name} className=" list-none">
             <Link
