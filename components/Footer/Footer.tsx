@@ -45,7 +45,7 @@ const Footer = () => {
                 <div
                   className={cn(
                     buttonVariants({ variant: "ghost" }),
-                    "w-10 px-0 hidden sm:inline-flex"
+                    "w-10 px-0 inline-flex"
                   )}
                 >
                   <Icons.gitHub className="h-6 w-6" />
@@ -60,7 +60,7 @@ const Footer = () => {
                 <div
                   className={cn(
                     buttonVariants({ variant: "ghost" }),
-                    "w-10 px-0 hidden sm:inline-flex"
+                    "w-10 px-0 inline-flex"
                   )}
                 >
                   <Icons.twitter className="h-6 w-6" />
@@ -75,7 +75,7 @@ const Footer = () => {
                 <div
                   className={cn(
                     buttonVariants({ variant: "ghost" }),
-                    "w-10 px-0 hidden sm:inline-flex"
+                    "w-10 px-0 inline-flex"
                   )}
                 >
                   <Icons.mail className="h-6 w-6" />

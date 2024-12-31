@@ -5,7 +5,14 @@ import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { Button } from "../ui/button";
-import { SheetTrigger, SheetContent, Sheet } from "../ui/sheet";
+import {
+  SheetTrigger,
+  SheetContent,
+  Sheet,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "../ui/sheet";
 import { Menu } from "lucide-react";
 import { navMenu } from "@/constants";
 
@@ -21,6 +28,10 @@ export function MobileNav() {
         </Button>
       </SheetTrigger>
       <SheetContent side="right">
+        <SheetHeader className="sr-only">
+          <SheetTitle>DrimBlog Mobile Menu</SheetTitle>
+          <SheetDescription>Mobile menu with links</SheetDescription>
+        </SheetHeader>
         <MobileLink
           onOpenChange={setOpen}
           href="/"

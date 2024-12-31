@@ -7,6 +7,7 @@ type TagListProps = {
   showCount?: boolean;
   tagSlug?: string;
   classname?: string;
+  insideLink?: boolean;
 };
 
 const TagList = ({ tags, showCount, tagSlug, classname }: TagListProps) => {

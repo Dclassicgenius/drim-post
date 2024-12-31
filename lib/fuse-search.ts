@@ -1,15 +1,6 @@
 import { Post } from "@/.velite";
 import Fuse from "fuse.js";
 
-export interface SearchablePost {
-  slug: string;
-  title: string;
-  description: string;
-  summary: string;
-  content: string;
-  tags: string[];
-}
-
 export function createSearchIndex(posts: Post[]) {
   const searchablePosts = posts.map((post) => ({
     slug: post.slug,
@@ -45,5 +36,6 @@ export function createSearchIndex(posts: Post[]) {
     ],
     threshold: 0.3,
     includeScore: true,
+    includeMatches: true,
   });
 }
