@@ -1,16 +1,11 @@
-// import type { NextConfig } from "next";
-
-// const nextConfig: NextConfig = {
-//   /* config options here */
-// };
-
-// export default nextConfig;
-
 import { build } from "velite";
 
 /** @type {import('next').NextConfig} */
-export default {
+const nextConfig = {
   // othor next config here...
+  images: {
+    domains: ["images.unsplash.com"],
+  },
   webpack: (config) => {
     config.plugins.push(new VeliteWebpackPlugin());
     return config;
@@ -35,3 +30,5 @@ class VeliteWebpackPlugin {
     });
   }
 }
+
+export default nextConfig;

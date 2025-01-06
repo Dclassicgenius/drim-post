@@ -1,0 +1,211 @@
+---
+title: A Complete Guide to MDX Components in Next.js
+description: Learn how to use our custom MDX components to create beautiful and interactive blog posts
+date: 2024-01-05
+published: true
+tags: ["nextjs", "web development", "react"]
+---
+
+# A Complete Guide to MDX Components in Next.js
+
+Welcome to this comprehensive guide on using our custom MDX components! We'll explore each component's features and see examples of how to use them effectively in your blog posts.
+
+## Basic Components
+
+### Callouts
+
+Callouts are perfect for highlighting important information. We support multiple variants to convey different types of messages.
+
+<Callout variant="info" title="Did you know?">
+  Callouts support markdown content, including **bold** and *italic* text.
+</Callout>
+
+<Callout variant="warning" title="Important Note">
+  Be careful when using this feature in production!
+</Callout>
+
+<Callout variant="error" title="Common Mistake">
+  ```typescript
+// Type annotations
+let name: string = "John Doe";
+let age: number = 30;
+let isStudent: boolean = false;
+
+// Function types
+function greet(name: string): string {
+return `Hello, ${name}!`;
+}
+
+````
+</Callout>
+
+<Callout variant="success" title="Pro Tip">
+  You can customize the icon by passing an `icon` prop.
+</Callout>
+
+### Code Blocks
+
+Our code blocks support syntax highlighting, filename display, and copy functionality.
+
+<CodeBlock
+  language="typescript"
+  filename="example.ts"
+  showLineNumbers={true}
+  code={`export function Example() {
+  return (
+    <div>
+      <h1>Hello World</h1>
+    </div>
+  );
+}`}
+>
+  {`const greeting = "Hello World";
+console.log(greeting);`}
+</CodeBlock>
+
+You can also include code within callouts:
+
+<Callout variant="warning" title="Important Note">
+  <CodeBlock language="typescript" filename="component.tsx">
+    {`export function Example() {
+  return (
+    <div>
+      <h1>Hello World</h1>
+    </div>
+  );
+}`}
+  </CodeBlock>
+</Callout>
+
+### External Links
+
+External links automatically include an icon and open in a new tab:
+
+Check out [Next.js documentation](https://nextjs.org) for more information.
+
+### Images with Captions
+
+Images can include optional captions and are optimized using Next.js Image component:
+
+<Image
+  src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485"
+  alt="Example image"
+  width={400}
+  height={200}
+  caption="A beautiful example image showcasing our component"
+/>
+
+## Advanced Components
+
+### Steps
+
+Use the Step component to create numbered tutorials or guides:
+
+<Step number={1} title="Install Dependencies">
+First, install the required packages:
+
+``` bash
+npm install @nextjs/mdx @tailwindcss/typography
+```
+
+</Step>
+
+<Step number={2} title="Configure MDX">
+Add the MDX configuration to your Next.js config file:
+
+<CodeBlock language="javascript" filename="next.config.js">
+{`const withMDX = require('@next/mdx')()
+module.exports = withMDX({
+  pageExtensions: ['ts', 'tsx', 'mdx']
+})`}
+</CodeBlock>
+</Step>
+
+### Tabs
+
+Tabs are great for showing multiple variations or examples:
+
+<Tabs
+  tabs={[
+    {
+      label: "npm",
+      content: <CodeBlock>{`npm install my-package`}</CodeBlock>,
+    },
+    {
+      label: "yarn",
+      content: <CodeBlock>{`yarn add my-package`}</CodeBlock>,
+    },
+    {
+      label: "pnpm",
+      content: <CodeBlock>{`pnpm add my-package`}</CodeBlock>,
+    },
+  ]}
+/>
+
+### Notes
+
+Use notes to add additional context or tips:
+
+<Note>
+  This is a helpful note that provides additional context or tips about the
+  topic being discussed.
+</Note>
+
+### Table of Contents
+
+The TableOfContents component automatically generates a navigation menu from your headings:
+
+<TableOfContents toc={toc} />
+
+## Best Practices
+
+1. **Component Imports**: Import all components at the top of your MDX file:
+
+```mdx
+import { Callout, CodeBlock, Image, Step, Tabs, Note } from '@/components/md
+
+x
+````
+
+2.  **Nesting Components**: Components can be nested within each other for complex layouts:
+
+   <Callout type="info" title="Nested Components">
+  <Step number={1} title="Example Step">
+    This is an example of nesting components.
+
+        <Note>
+          You can nest notes inside steps inside callouts!
+        </Note>
+
+      </Step>
+
+</Callout>
+
+3.  **Responsive Design**: All components are designed to work well on both mobile and desktop screens.
+
+4.  **Dark Mode Support**: Every component supports dark mode out of the box.
+
+## Typescript Support
+
+All components are fully typed for the best development experience. Here's an example of the props interface for the Callout component:
+
+<CodeBlock filename="types.ts" language="typescript">
+  {`interface CalloutProps {
+  type?: 'info' | 'warning' | 'error' | 'success';
+  title?: string;
+  icon?: keyof typeof icons;
+  children: React.ReactNode;
+}`}
+</CodeBlock>
+
+## Conclusion
+
+These MDX components provide a powerful foundation for creating beautiful and interactive blog posts. Remember to:
+
+- Use callouts to highlight important information
+- Leverage code blocks for technical content
+- Include steps for tutorials
+- Use tabs for alternative approaches
+- Add notes for additional context
+
+Happy blogging!

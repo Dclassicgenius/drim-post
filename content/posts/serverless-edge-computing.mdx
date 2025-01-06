@@ -12,11 +12,32 @@ summary: Dive into the world of serverless edge computing and learn how it's rev
 
 As we move further into 2024, serverless edge computing has emerged as a game-changing paradigm in web development. This innovative approach combines the flexibility of serverless architectures with the speed and proximity of edge computing, offering unprecedented performance and scalability. Let's explore how this technology is reshaping the web landscape.
 
+<Callout>
+  Experiment with other filters!
+
+In the example above, I increased the brightness of everything behind the glassy edge by 20% with a secondary filter, \`brightness(1.2)\`.
+
+</Callout>
+
+<Callout variant="warning">
+  ## Weird Firefox quirk
+
+While working on this blog post, I ran into a [known bug](https://example.com): \`backdrop-filter\` stops working in Firefox on a \`position: sticky\` element if an ancestor has both \`overflow\` and \`border-radius\` set.
+
+</Callout>
+
+<Callout variant="info">
+  ## Credit where credit is due
+
+I learned about this effect from [Artur Bien's](https://example.com) incredible demos. He credits [Jamie Gray](https://example.com) for the original concept.
+
+</Callout>
+
 ## 1. Understanding Serverless Edge Computing
 
 Serverless edge computing moves computation closer to the end-user by running code at edge locations distributed globally. This approach significantly reduces latency and improves application responsiveness.
 
-```javascript
+```javascript title="handler.js"
 // Example of a serverless edge function
 export default async function handler(request) {
   const userLocation = request.headers.get("CF-IPCountry");

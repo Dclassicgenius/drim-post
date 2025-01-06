@@ -1,6 +1,13 @@
-import Image from "next/image";
 import * as runtime from "react/jsx-runtime";
 import { Toc } from "@stefanprobst/rehype-extract-toc";
+import { Callout } from "../Custom/Callout";
+import { CodeBlock } from "../Custom/Codeblock";
+import { ExternalLink } from "../Custom/ExternalLink";
+import { Image } from "../Custom/Image";
+import { Step } from "../Custom/Step";
+import { Tabs } from "../Custom/Tabs";
+import { Note } from "../Custom/Note";
+import { TableOfContents } from "../Custom/TableOfContents";
 
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
@@ -13,6 +20,13 @@ const useMDXComponent = (code: string) => {
 
 const components = {
   Image,
+  Callout,
+  CodeBlock,
+  ExternalLink,
+  Step,
+  Tabs,
+  Note,
+  TableOfContents,
 };
 
 interface MdxProps {

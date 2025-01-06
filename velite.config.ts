@@ -4,12 +4,26 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeToc from "@stefanprobst/rehype-extract-toc";
 import rehypeTocExtract from "@stefanprobst/rehype-extract-toc/mdx";
-import { calculateReadingTime } from "./lib/utils";
+import { transformerCopyButton } from "@rehype-pretty/transformers";
 
-const computedFields = <T extends { slug: string; body: string }>(data: T) => ({
+const options = {
+  theme: "dracula",
+  transformers: [
+    transformerCopyButton({
+      visibility: "always",
+      feedbackDuration: 3_000,
+    }),
+  ],
+};
+
+const computedFields = <
+  T extends { slug: string; meta: { readingTime: number } }
+>(
+  data: T
+) => ({
   ...data,
   slugAsParams: data.slug.split("/").slice(1).join("/"),
-  readingTime: calculateReadingTime(data.body),
+  readingTime: data.meta.readingTime,
 });
 
 const posts = defineCollection({
@@ -27,6 +41,9 @@ const posts = defineCollection({
       image: s.string().optional(),
       author: s.string().optional(),
       summary: s.string().optional(),
+      rawContent: s.raw(),
+      meta: s.metadata(),
+      excerpt: s.excerpt(),
       body: s.mdx(),
     })
     .transform(computedFields),
@@ -47,7 +64,7 @@ export default defineConfig({
       rehypeSlug,
       rehypeToc,
       [rehypeTocExtract, { name: "toc" }],
-      [rehypePrettyCode, { theme: "dracula" }],
+      [rehypePrettyCode, options],
       [
         rehypeAutolinkHeadings,
         {
