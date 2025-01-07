@@ -8,6 +8,8 @@ import { Step } from "../Custom/Step";
 import { Tabs } from "../Custom/Tabs";
 import { Note } from "../Custom/Note";
 import { TableOfContents } from "../Custom/TableOfContents";
+import Pre from "../Custom/Pre";
+import { JSX, ClassAttributes, HTMLAttributes } from "react";
 
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
@@ -22,11 +24,16 @@ const components = {
   Image,
   Callout,
   CodeBlock,
-  ExternalLink,
+  a: ExternalLink,
   Step,
   Tabs,
   Note,
   TableOfContents,
+  pre: (
+    props: JSX.IntrinsicAttributes &
+      ClassAttributes<HTMLPreElement> &
+      HTMLAttributes<HTMLPreElement>
+  ) => <Pre {...props} />,
 };
 
 interface MdxProps {

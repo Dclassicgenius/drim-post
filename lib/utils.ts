@@ -117,9 +117,6 @@ export const getTagsWithGradient = (tags: string[]) => {
   }));
 };
 
-export function calculateReadingTime(content: string): string {
-  const wordsPerMinute = 200;
-  const words = content.split(/\s+/).length;
-  const minutes = Math.ceil(words / wordsPerMinute);
+export function formatReadingTime(minutes: number): string {
   return `${minutes} ${minutes === 1 ? "min" : "mins"} read`;
 }

@@ -1,12 +1,12 @@
-import { AlertCircle, CheckCircle2, Info, XCircle } from "lucide-react";
+import { BadgeAlert, CircleCheckBig, Info, Bug } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const icons = {
   default: Info,
   info: Info,
-  warning: AlertCircle,
-  error: XCircle,
-  success: CheckCircle2,
+  warning: BadgeAlert,
+  error: Bug,
+  success: CircleCheckBig,
 } as const;
 
 type CalloutProps = {
@@ -19,28 +19,26 @@ type CalloutProps = {
 
 const variantStyles = {
   default: {
-    container:
-      "bg-blue-950/10 dark:bg-blue-900/20 border-blue-900/20 dark:border-blue-900/30",
+    container: "bg-blue-900/10 dark:bg-blue-800/20  border-l-blue-800",
     icon: "text-blue-500 dark:text-blue-400",
   },
   info: {
-    container:
-      "bg-blue-950/10 dark:bg-blue-900/20 border-blue-900/20 dark:border-blue-900/30",
+    container: "bg-blue-900/10 dark:bg-blue-800/20  border-l-blue-800",
     icon: "text-blue-500 dark:text-blue-400",
   },
   warning: {
     container:
-      "bg-yellow-950/10 dark:bg-yellow-900/20 border-yellow-900/20 dark:border-yellow-900/30",
+      "bg-yellow-900/10 dark:bg-yellow-800/20 border-l-yellow-600 dark:border-l-yellow-800",
     icon: "text-yellow-500 dark:text-yellow-400",
   },
   error: {
     container:
-      "bg-red-950/10 dark:bg-red-900/20 border-red-900/20 dark:border-red-900/30",
+      "bg-red-900/10 dark:bg-red-900/20 border-l-red-600 dark:border-l-red-800",
     icon: "text-red-500 dark:text-red-400",
   },
   success: {
     container:
-      "bg-green-950/10 dark:bg-green-900/20 border-green-900/20 dark:border-green-900/30",
+      "bg-green-900/10 dark:bg-green-900/20 border-l-green-600 dark:border-l-green-800",
     icon: "text-green-500 dark:text-green-400",
   },
 } as const;
@@ -55,11 +53,16 @@ export function Callout({
   const styles = variantStyles[variant];
 
   return (
-    <div className={cn("my-6 rounded-lg border p-4", styles.container)}>
+    <div
+      className={cn(
+        "my-6 p-4 border-l-4 border-solid rounded-tr-lg rounded-br-lg",
+        styles.container
+      )}
+    >
       <div className="flex items-start space-x-4">
-        <Icon className={cn("mt-1 h-5 w-5 flex-shrink-0", styles.icon)} />
+        <Icon className={cn("mt-1 h-6 w-6 flex-shrink-0", styles.icon)} />
         <div className="flex-1 space-y-2">
-          {title && <h4 className="font-medium">{title}</h4>}
+          {title && <h4 className="font-bold">{title}</h4>}
           <div>{children}</div>
         </div>
       </div>

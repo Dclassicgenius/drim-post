@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 
 import "@/styles/mdx.css";
 import {
-  calculateReadingTime,
   cn,
   formatDate,
+  formatReadingTime,
   getTagsWithGradient,
 } from "@/lib/utils";
 import { Clock } from "lucide-react";
@@ -96,8 +96,6 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const tagsWithGradient = getTagsWithGradient(post?.tags ?? []);
 
-  const readingTime = calculateReadingTime(post.body);
-
   const tableOfContents = MDXToC({ code: post.body });
 
   return (
@@ -138,7 +136,8 @@ export default async function PostPage({ params }: PostPageProps) {
                 fontMono.className
               )}
             >
-              <Clock className="h-4 w-4" /> {readingTime}
+              <Clock className="h-4 w-4" />{" "}
+              {formatReadingTime(post.readingTime)}
             </p>
 
             <hr className="my-4" />

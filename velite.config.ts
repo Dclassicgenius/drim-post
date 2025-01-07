@@ -4,17 +4,6 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeToc from "@stefanprobst/rehype-extract-toc";
 import rehypeTocExtract from "@stefanprobst/rehype-extract-toc/mdx";
-import { transformerCopyButton } from "@rehype-pretty/transformers";
-
-const options = {
-  theme: "dracula",
-  transformers: [
-    transformerCopyButton({
-      visibility: "always",
-      feedbackDuration: 3_000,
-    }),
-  ],
-};
 
 const computedFields = <
   T extends { slug: string; meta: { readingTime: number } }
@@ -64,7 +53,7 @@ export default defineConfig({
       rehypeSlug,
       rehypeToc,
       [rehypeTocExtract, { name: "toc" }],
-      [rehypePrettyCode, options],
+      [rehypePrettyCode, { theme: "dracula" }],
       [
         rehypeAutolinkHeadings,
         {

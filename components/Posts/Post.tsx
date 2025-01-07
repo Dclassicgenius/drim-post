@@ -1,7 +1,12 @@
 import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
-import { cn, formatDate, getTagsWithGradient } from "@/lib/utils";
+import {
+  cn,
+  formatDate,
+  formatReadingTime,
+  getTagsWithGradient,
+} from "@/lib/utils";
 import { Overpass_Mono } from "next/font/google";
 import TagList from "../Tags/TagList";
 
@@ -12,7 +17,7 @@ type PostProps = {
   tags?: string[];
   summary?: string;
   slug: string;
-  readingTime: string;
+  readingTime: number;
 };
 
 const overpassMono = Overpass_Mono({
@@ -59,7 +64,7 @@ const Post = ({
           <dt className="sr-only">Reading Time</dt>
           <dd className="text-base font-medium flex items-center gap-1">
             <Clock className="h-4 w-4" />
-            <span className="text-base ">{readingTime}</span>
+            <span className="text-base">{formatReadingTime(readingTime)}</span>
           </dd>
         </dl>
       </div>
