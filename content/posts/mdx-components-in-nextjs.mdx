@@ -106,7 +106,7 @@ First, install the required packages:
 
 ``` bash
 npm install @nextjs/mdx @tailwindcss/typography
-```
+````
 
 </Step>
 
@@ -129,15 +129,16 @@ Tabs are great for showing multiple variations or examples:
   tabs={[
     {
       label: "npm",
-      content: <CodeBlock>{`npm install my-package`}</CodeBlock>,
+      content: "```bash\n npm install your-package\n ```",
     },
     {
       label: "yarn",
-      content: <CodeBlock>{`yarn add my-package`}</CodeBlock>,
+      content: "```bash\n yarn add your-package\n ```",
     },
     {
       label: "pnpm",
-      content: <CodeBlock>{`pnpm add my-package`}</CodeBlock>,
+      content:
+        "```typescript\n// Type annotations \nlet name: string = 'John Doe';\nlet age: number = 30;\nlet isStudent: boolean = false;\n\n// Function types\nfunction greet(name: string): string {\n  return `Hello, ${name}!`;\n}\n```",
     },
   ]}
 />
@@ -161,11 +162,9 @@ The TableOfContents component automatically generates a navigation menu from you
 
 1. **Component Imports**: Import all components at the top of your MDX file:
 
-```mdx
-import { Callout, CodeBlock, Image, Step, Tabs, Note } from '@/components/md
-
-x
-````
+```jsx
+import { Callout, CodeBlock, Image, Step, Tabs, Note } from '@/components/mdx
+```
 
 2.  **Nesting Components**: Components can be nested within each other for complex layouts:
 

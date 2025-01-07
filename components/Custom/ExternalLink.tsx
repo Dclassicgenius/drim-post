@@ -25,7 +25,7 @@ export function ExternalLink({ href, children }: ExternalLinkProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1 text-purple-500 hover:text-purple-600 dark:text-purple-400 dark:hover:text-purple-300"
+      className="inline-flex items-center gap-1 text-purple-600 hover:text-purple-700 dark:text-purple-500 dark:hover:text-purple-400"
     >
       {children}
       <ExternalLinkIcon className="h-4 w-4" />

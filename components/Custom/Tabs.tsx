@@ -1,11 +1,12 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
 import { useState } from "react";
 
 interface Tab {
   label: string;
-  content: React.ReactNode;
+  content: ReactNode;
 }
 
 interface TabsProps {
@@ -34,7 +35,9 @@ export function Tabs({ tabs, defaultTab = 0 }: TabsProps) {
           </button>
         ))}
       </div>
-      <div className="mt-4">{tabs[activeTab].content}</div>
+      <div className="mt-4 rounded-lg bg-zinc-50 p-4 dark:bg-zinc-800">
+        {tabs[activeTab].content}
+      </div>
     </div>
   );
 }
