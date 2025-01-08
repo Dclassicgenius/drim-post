@@ -19,14 +19,20 @@ export function Image({
   caption,
 }: ImageProps) {
   return (
-    <figure className="my-8">
-      <div className={cn("overflow-hidden rounded-lg", className)}>
+    <figure className="my-8 ">
+      <div
+        className={cn(" w-full", className)}
+        style={{
+          aspectRatio: width && height ? `${width} / ${height}` : "16 / 9",
+        }}
+      >
         <NextImage
           src={src}
           alt={alt}
           width={width}
           height={height}
-          className="w-full"
+          className="w-full h-full overflow-hidden rounded-lg object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
       {caption && (
