@@ -2,7 +2,6 @@ import { build } from "velite";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // othor next config here...
   images: {
     domains: ["images.unsplash.com"],
   },

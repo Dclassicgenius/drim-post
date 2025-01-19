@@ -1,7 +1,7 @@
 import { posts } from "#site/content";
 import PostList from "@/components/Posts/PostList";
 import TagList from "@/components/Tags/TagList";
-import { getAllTags, getPostsByTagSlug } from "@/lib/utils";
+import { getAllTags, getPostsByTagSlug, sortPosts } from "@/lib/utils";
 import { slug } from "github-slugger";
 import { Metadata } from "next";
 
@@ -32,7 +32,7 @@ export default function TagPage({ params }: TagPageProps) {
   const title = tag.split("-").join(" ");
 
   const allPosts = getPostsByTagSlug(posts, tag);
-  const displayPosts = allPosts.filter((post) => post.published);
+  const displayPosts = sortPosts(allPosts.filter((post) => post.published));
 
   const tags = getAllTags(posts);
 

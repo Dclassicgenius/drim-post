@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import "@/styles/mdx.css";
 import {
+  areDifferentDays,
   cn,
   formatDate,
   formatReadingTime,
@@ -122,12 +123,15 @@ export default async function PostPage({ params }: PostPageProps) {
               )}
             >
               <p className="m-0">Published on {formatDate(post.date)} </p>
-              {post.updatedOn && <span className="hidden sm:block">•</span>}
-              {post.updatedOn && (
-                <p className="m-0">
-                  Last updated on {formatDate(post.updatedOn)}{" "}
-                </p>
-              )}
+              {post.updatedOn &&
+                areDifferentDays(post.date, post.updatedOn) && (
+                  <>
+                    <span className="hidden sm:block">•</span>
+                    <p className="m-0">
+                      Last updated on {formatDate(post.updatedOn)}
+                    </p>
+                  </>
+                )}
             </div>
 
             <p

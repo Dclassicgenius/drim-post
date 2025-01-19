@@ -140,7 +140,7 @@ const Search = () => {
                   <h3 className="font-bold hover:underline hover:decoration-purple-600">
                     <button
                       onClick={() => handleItemClick(post.slug)}
-                      className="hover:underline"
+                      className="hover:underline hover:decoration-purple-600"
                     >
                       {post.title}
                     </button>

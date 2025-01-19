@@ -83,10 +83,6 @@ export function getAllTags(posts: Array<Post>) {
   return tagsWithGradient.sort((a, b) => b.count - a.count);
 }
 
-export function sortTagsByCount(tags: Record<string, number>) {
-  return Object.keys(tags).sort((a, b) => tags[b] - tags[a]);
-}
-
 export function getPostsByTagSlug(posts: Array<Post>, tag: string) {
   return posts.filter((post) => {
     if (!post.tags) return false;
@@ -120,3 +116,13 @@ export const getTagsWithGradient = (tags: string[]) => {
 export function formatReadingTime(minutes: number): string {
   return `${minutes} ${minutes === 1 ? "min" : "mins"} read`;
 }
+
+export const areDifferentDays = (date1: string, date2: string) => {
+  const d1 = new Date(date1);
+  const d2 = new Date(date2);
+  return (
+    d1.getDate() !== d2.getDate() ||
+    d1.getMonth() !== d2.getMonth() ||
+    d1.getFullYear() !== d2.getFullYear()
+  );
+};

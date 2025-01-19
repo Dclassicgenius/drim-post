@@ -24,17 +24,6 @@ export default function Pre({
   };
 
   return (
-    // <pre ref={preRef} {...props} className='relative'>
-    //   <button
-    //     disabled={isCopied}
-    //     onClick={handleClickCopy}
-    //     className='absolute right-4 size-6'
-    //   >
-    //     {isCopied ? <Check /> : <Clipboard />}
-    //   </button>
-    //   {children}
-    // </pre>
-
     <div className="relative">
       <button
         disabled={isCopied}

@@ -1,7 +1,9 @@
+import { ReactNode } from "react";
+
 interface StepProps {
   number: number;
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function Step({ number, title, children }: StepProps) {

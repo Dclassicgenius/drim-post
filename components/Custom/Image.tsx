@@ -8,6 +8,7 @@ interface ImageProps {
   height?: number;
   className?: string;
   caption?: string;
+  priority?: boolean;
 }
 
 export function Image({
@@ -17,6 +18,7 @@ export function Image({
   height,
   className,
   caption,
+  priority = true,
 }: ImageProps) {
   return (
     <figure className="my-8 ">
@@ -31,6 +33,7 @@ export function Image({
           alt={alt}
           width={width}
           height={height}
+          priority={priority}
           className="w-full h-full overflow-hidden rounded-lg object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />

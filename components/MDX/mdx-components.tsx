@@ -1,13 +1,11 @@
 import * as runtime from "react/jsx-runtime";
 import { Toc } from "@stefanprobst/rehype-extract-toc";
 import { Callout } from "../Custom/Callout";
-import { CodeBlock } from "../Custom/Codeblock";
 import { ExternalLink } from "../Custom/ExternalLink";
 import { Image } from "../Custom/Image";
 import { Step } from "../Custom/Step";
 import { Tabs } from "../Custom/Tabs";
 import { Note } from "../Custom/Note";
-import { TableOfContents } from "../Custom/TableOfContents";
 import Pre from "../Custom/Pre";
 import { JSX, ClassAttributes, HTMLAttributes } from "react";
 
@@ -23,12 +21,10 @@ const useMDXComponent = (code: string) => {
 const components = {
   Image,
   Callout,
-  CodeBlock,
   a: ExternalLink,
   Step,
   Tabs,
   Note,
-  TableOfContents,
   pre: (
     props: JSX.IntrinsicAttributes &
       ClassAttributes<HTMLPreElement> &

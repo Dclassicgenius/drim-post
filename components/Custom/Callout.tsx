@@ -43,14 +43,9 @@ const variantStyles = {
   },
 } as const;
 
-export function Callout({
-  children,
-  icon,
-  title,
-  variant = "default",
-}: CalloutProps) {
-  const Icon = icons[icon ?? variant];
-  const styles = variantStyles[variant];
+export function Callout({ children, icon, title, variant }: CalloutProps) {
+  const Icon = variant ? icons[icon ?? variant] : icons["default"];
+  const styles = variant ? variantStyles[variant] : variantStyles["default"];
 
   return (
     <div
