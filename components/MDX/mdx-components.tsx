@@ -4,7 +4,7 @@ import { Callout } from "../Custom/Callout";
 import { ExternalLink } from "../Custom/ExternalLink";
 import { Image } from "../Custom/Image";
 import { Step } from "../Custom/Step";
-import { Tabs } from "../Custom/Tabs";
+import { Tab, Tabs } from "../Custom/Tabs";
 import { Note } from "../Custom/Note";
 import Pre from "../Custom/Pre";
 import { JSX, ClassAttributes, HTMLAttributes } from "react";
@@ -23,6 +23,7 @@ const components = {
   Callout,
   a: ExternalLink,
   Step,
+  Tab,
   Tabs,
   Note,
   pre: (

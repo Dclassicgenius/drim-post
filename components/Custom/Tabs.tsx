@@ -1,26 +1,23 @@
 "use client";
 
+import React, { Children, ReactElement, ReactNode, useState } from "react";
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
-import { useState } from "react";
-
-interface Tab {
-  label: string;
-  content: ReactNode;
+interface TabProps {
+  title: string;
+  children: ReactNode;
 }
 
 interface TabsProps {
-  tabs: Tab[];
-  defaultTab?: number;
+  children: ReactElement<TabProps>[];
 }
 
-export function Tabs({ tabs, defaultTab = 0 }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(defaultTab);
+export function Tabs({ children }: TabsProps) {
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div className="my-6">
       <div className="flex space-x-1 rounded-lg bg-zinc-100 p-1 dark:bg-zinc-800">
-        {tabs.map((tab, index) => (
+        {Children.map(children, (child, index) => (
           <button
             key={index}
             onClick={() => setActiveTab(index)}
@@ -31,13 +28,21 @@ export function Tabs({ tabs, defaultTab = 0 }: TabsProps) {
                 : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100"
             )}
           >
-            {tab.label}
+            {child.props.title}
           </button>
         ))}
       </div>
-      <div className="mt-4 rounded-lg bg-zinc-50 p-4 dark:bg-zinc-800">
-        {tabs[activeTab].content}
+      <div className="mt-4 rounded-lg bg-zinc-50 dark:bg-zinc-800">
+        {Children.map(children, (child, index) => (
+          <div key={index} className={activeTab === index ? "block" : "hidden"}>
+            {child.props.children}
+          </div>
+        ))}
       </div>
     </div>
   );
+}
+
+export function Tab({ children }: TabProps) {
+  return <>{children}</>;
 }
